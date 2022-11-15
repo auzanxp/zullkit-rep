@@ -17,7 +17,7 @@ defineProps({
           <img
             :alt="title"
             class="block w-full h-auto"
-            :src="'/src/assets/img/' + image"
+            :src="image"
           />
         </div>
       </RouterLink>
@@ -32,7 +32,7 @@ defineProps({
           </RouterLink>
         </h1>
         <span class="block text-sm font-light text-gray-500 no-underline">
-          {{ count }} Items
+          {{ description }} Items
         </span>
       </header>
     </div>

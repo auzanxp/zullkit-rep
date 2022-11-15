@@ -1,12 +1,23 @@
 <script setup>
-import { ref } from "vue";
+import axios from "axios";
+import { onMounted, ref } from "vue";
 import ItemCard from "./../ItemCard.vue";
 
-const items = ref([
-  { id: 1, title: "Mobile UI Kit", count: 731, image: "items-1.jpg" },
-  { id: 2, title: "Mobile UI Kit", count: 731, image: "items-2.jpg" },
-  { id: 3, title: "Mobile UI Kit", count: 731, image: "items-3.jpg" },
-]);
+const items = ref([]);
+
+async function getItemData() {
+  try {
+    const response = await axios.get('https://zullkit-backend.buildwithangga.id/api/products')
+    items.value = response.data.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(() => {
+  getItemData()
+})
+
 </script>
 
 <template>
@@ -17,9 +28,10 @@ const items = ref([
         v-for="item in items"
         :key="item.id"
         :id="item.id"
-        :title="item.title"
+        :title="item.name"
+        :description="item.subtitle"
         :count="item.count"
-        :image="item.image"
+        :image="item.thumbnails"
       />
     </div>
   </div>
