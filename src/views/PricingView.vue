@@ -1,32 +1,30 @@
 <script setup>
-// import { RouterLink } from "vue-router";
-// import axios from "axios";
-
+import axios from "axios";
 import FeatureLists from "@/components/authentication/FeatureLists.vue";
 import { RouterLink } from "vue-router";
 
-// async function checkout(price) {
-//   try {
-//     const response = await axios.post(
-//       "https://zullkit-backend.buildwithangga.id/api/checkout",
-//       {
-//         payment_total: price,
-//         payment_status: "PENDING",
-//       },
-//       {
-//         headers: {
-//           Authorization:
-//             localStorage.getItem("token_type") +
-//             " " +
-//             localStorage.getItem("access_token"),
-//         },
-//       }
-//     );
-//     window.location.href = response.data.data.payment_url;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+async function checkout(price) {
+  try {
+    const response = await axios.post(
+      "https://zullkit-backend.buildwithangga.id/api/checkout",
+      {
+        payment_total: price,
+        payment_status: "PENDING",
+      },
+      {
+        headers: {
+          Authorization:
+            localStorage.getItem("token_type") +
+            " " +
+            localStorage.getItem("access_token"),
+        },
+      }
+    );
+    window.location.href = response.data.data.payment_url;
+  } catch (error) {
+    console.error(error);
+  }
+}
 </script>
 
 <template>
